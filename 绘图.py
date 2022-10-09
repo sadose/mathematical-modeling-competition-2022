@@ -46,8 +46,7 @@ for roadIdx in line.keys():
     b = node[node2]
     x = [a[0], b[0]]
     y = [a[1], b[1]]
-    plt.plot(x, y, color="aquamarine",linewidth = '0.5')
-
+    plt.plot(x, y, color="aquamarine", linewidth='0.5')
 
 # 绘制小区数据
 with open("data/小区数据.csv", "r", encoding="utf8") as f:
@@ -57,10 +56,11 @@ with open("data/小区数据.csv", "r", encoding="utf8") as f:
         if first:
             first = False
             continue
+        # if row[7][-1] != ")":
+        #     continue
         x = float(row[4])
         y = float(row[5])
         plt.plot(x, y, marker='.', color=colors[row[7]])
-
 
 # 绘制集散地
 with open("output/集散地投影.csv", "r", encoding="utf8") as f:
@@ -70,10 +70,11 @@ with open("output/集散地投影.csv", "r", encoding="utf8") as f:
         if first:
             first = False
             continue
+        # if row[0][-1] != ")":
+        #     continue
         x = float(row[1])
         y = float(row[2])
         plt.plot(x, y, marker='2', color="b")
-
 
 # 绘制物资来源
 with open("data/各区物资来源.csv", "r", encoding="utf8") as f:
@@ -87,6 +88,5 @@ with open("data/各区物资来源.csv", "r", encoding="utf8") as f:
         y = float(row[3])
         plt.plot(x, y, marker='*', color="r")
 
-
-plt.savefig('figure.png', dpi = 200)
+plt.savefig('figure.png', dpi=200)
 # plt.show()
