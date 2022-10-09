@@ -39,11 +39,15 @@ def getRoad():
     line = toDict("data/道路数据.csv")
     print("共读取", len(line.keys()), "条道路")
     print("计算中...")
-    with open("output/小区-道路.csv", "w", encoding="utf8") as f:
+    # fileinput = "data/小区数据.csv" # 小区输入文件
+    fileinput = "data/各区物资来源.csv" # 物资来源输入文件
+    # fileoutput = "output/小区-道路.csv" # 小区输出文件
+    fileoutput = "output/物资来源-道路.csv" # 物资来源输出文件
+    with open(fileoutput, "w", encoding="utf8") as f:
         f.write("")
-    with open("output/小区-道路.csv", "a", encoding="utf8") as fr:
-        fr.write("小区编号,道路编号,虚拟距离\n")
-        with open("data/小区数据.csv", "r", encoding="utf8") as f:
+    with open(fileoutput, "a", encoding="utf8") as fr:
+        fr.write("点位编号,道路编号,虚拟距离\n")
+        with open(fileinput, "r", encoding="utf8") as f:
             reader = csv.reader(f)
             first = True
             for row in reader:
@@ -51,7 +55,8 @@ def getRoad():
                     first = False
                     continue
                 idx = int(row[0])
-                p = [float(row[4]), float(row[5])]
+                # p = [float(row[4]), float(row[5])] # 小区
+                p = [float(row[2]), float(row[3])] # 物资来源
                 road = 1
                 a = [0, 0]
                 b = [0, 0]
